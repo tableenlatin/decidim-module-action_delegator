@@ -1,0 +1,488 @@
+---
+fr:
+  activemodel:
+    attributes:
+      csv_import:
+        csv_file: Fichier CSV
+      delegations_verifier:
+        email: E-mail
+        phone: Numéro de téléphone mobile
+      participant:
+        decidim_action_delegator_ponderation_id: Pondération
+        email: E-mail
+        phone: Téléphone
+      ponderation:
+        name: Type d'adhésion
+        name_help: Type d'adhésion
+      setting:
+        active: Actif
+        max_grants: Nombre maximum de délégations de vote qu'un participant peut recevoir
+        phone_freezed: Utiliser le numéro de téléphone du recensement. Ne pas autoriser
+          les participants à le modifier.
+        verify_with_sms: Vérifier par SMS
+    errors:
+      messages:
+        only_one_active_setting_per_phone_required: Il ne peut y avoir qu'une seule
+          configuration active avec vérification par téléphone à la fois.
+      models:
+        delegations_verifier:
+          attributes:
+            email:
+              email_not_found: Désolé, cet e-mail n'est pas dans le recensement. Veuillez
+                nous contacter si vous pensez qu'il s'agit d'une erreur.
+            phone:
+              phone_not_found: Désolé, ce numéro de téléphone n'est pas dans le recensement.
+                Veuillez nous contacter si vous pensez qu'il s'agit d'une erreur.
+  decidim:
+    action_delegator:
+      admin:
+        census:
+          setting_group: Groupe de configuration
+        delegations:
+          create:
+            error: Un problème est survenu lors de la création de la délégation
+            error_granter_unique: a déjà délégué son vote
+            error_max_grants: Vous avez atteint la limite de délégations autorisées
+              pour ce bénéficiaire
+            success: Délégation créée avec succès
+          csv_imports:
+            invalid: Un problème est survenu lors de l'importation des délégations
+            success: Délégations importées avec succès
+          destroy:
+            error: Un problème est survenu lors de la suppression de cette délégation
+            success: Délégation supprimée avec succès
+          grantee_missing: Le bénéficiaire (destinataire) n'est pas enregistré sur la
+            plateforme
+          granter_missing: Le délégant (émetteur) n'est pas enregistré sur la plateforme
+          index:
+            actions:
+              csv_import: Importer via CSV
+              new_delegation: Nouvelle délégation
+            created_at: Créé le
+            description_html: Voici les délégations actuelles pour cette consultation
+            grantee: Bénéficiaire (à)
+            grantee_voted: Le bénéficiaire a-t-il voté au nom du délégant ?
+            granter: Délégant (de)
+          new:
+            grantee: Bénéficiaire (à)
+            granter: Délégant (de)
+            granter_not_verified_warning: Le délégant n'a pas besoin de figurer dans
+              la liste des participants ni d'être vérifié — il doit seulement exister
+              en tant qu'utilisateur Decidim. Assurez-vous de la confiance que vous
+              portez à la délégation que vous êtes sur le point de créer.
+            save: Créer
+            select_member: Sélectionner un membre
+        invite_participants:
+          invite_all_users:
+            error: Une erreur s'est produite lors de l'invitation des utilisateurs
+            success: Utilisateurs invités avec succès
+          invite_user:
+            error: Une erreur s'est produite lors de l'invitation de l'utilisateur
+            success: Utilisateur invité avec succès
+          permissions:
+            not_allowed: Vous n'êtes pas autorisé à effectuer cette action
+          resend_invitation:
+            error: Une erreur s'est produite lors du renvoi de l'invitation
+            success: Invitation renvoyée avec succès
+        manage_delegations:
+          create:
+            error: Un problème est survenu lors de l'importation des participants
+            success: Le processus d'importation a démarré, veuillez patienter quelques
+              minutes et actualiser la page pour voir la liste des participants. Les
+              résultats de l'importation seront envoyés par e-mail.
+          new:
+            import: Importer
+            required_fields: 'Champs obligatoires : e-mail du délégant, e-mail du bénéficiaire'
+            title: Importer des délégations
+            title_example: 'Exemple :'
+            upload_button: Téléverser le fichier CSV
+            upload_help: 'Doit être un fichier au format CSV avec un en-tête. Colonnes
+              requises : from, to.'
+            upload_instructions: Doit être un fichier au format CSV avec un en-tête.
+        manage_participants:
+          create:
+            error: Un problème est survenu lors de l'importation des participants
+            success: Le processus d'importation a démarré, veuillez patienter quelques
+              minutes et actualiser la page pour voir la liste des participants. Les
+              résultats de l'importation seront envoyés par e-mail.
+          new:
+            authorization_method:
+              both: e-mail et numéro de téléphone
+              email: e-mail
+              phone: numéro de téléphone
+            describe: 'Il est aussi possible d''importer les pondérations en utilisant
+              le nom dans la table des pondérations au lieu du nombre de pondération,
+              par exemple :'
+            import: Importer
+            required_fields: 'Champs obligatoires : %{authorization_method}'
+            title: Importer des participants
+            title_example: 'Exemple :'
+            upload_button: Téléverser le fichier CSV
+            upload_help: Doit être un fichier au format CSV avec un en-tête.
+            upload_instructions: Doit être un fichier au format CSV avec un en-tête.
+        menu:
+          action_delegator_menu:
+            delegations: Délégations
+            main: Principal
+            participants: Participants
+            ponderations: Pondérations
+            settings: Configuration
+          delegations: Gouvernance d'entreprise
+          elections_submenu:
+            by_answer: Par réponse
+            by_type_and_weight: Par type et poids
+            results: Résultats
+            sum_of_weights: Somme des poids
+            totals: Totaux
+          participants: Participants
+        participants:
+          create:
+            error: Un problème est survenu lors de la création des participants
+            success: Participants créés avec succès
+          destroy:
+            error: Un problème est survenu lors de la suppression de ce participant
+            success: Participant supprimé avec succès
+          edit:
+            save: Enregistrer
+          index:
+            actions:
+              csv_import: Importer CSV
+              new_participant: Nouveau participant
+              remove_census: Supprimer le recensement
+            all_users_registered_html: Tous les utilisateurs sont enregistrés sur la
+              plateforme
+            created_at: Créé le
+            email: E-mail
+            last_login: Dernière connexion
+            missing_emails: La méthode d'autorisation ne nécessite pas d'e-mail. Pour
+              cette raison, %{count} doivent s'enregistrer sur la plateforme
+            missing_registered: Il y a %{missing_registered} qui ne sont pas enregistrés
+              sur la plateforme
+            never_logged: Jamais connecté
+            participant: participant
+            phone: Téléphone
+            ponderation: Type de pondération
+            send_invitation_link: Cliquez ici pour leur envoyer une invitation
+            user: Nom
+            voted: A voté ?
+          new:
+            save: Créer
+          remove_census:
+            confirm: Êtes-vous sûr de vouloir supprimer le recensement ? Cette opération
+              est irréversible.
+            success: "%{participants_count} entrées ont été supprimées du recensement
+              avec succès"
+          update:
+            error: Un problème est survenu lors de la mise à jour des participants
+            success: Participants enregistrés avec succès
+        permissions:
+          sync:
+            started: La synchronisation des participants a démarré. Veuillez patienter
+              quelques minutes et actualiser cette page.
+          update:
+            error: Un problème est survenu lors de la mise à jour des permissions
+            success: Permissions mises à jour avec succès
+        ponderations:
+          create:
+            error: Une erreur s'est produite lors de la création de la pondération
+            success: Nouvelle pondération créée avec succès
+          destroy:
+            error: Une erreur s'est produite lors de la suppression de la pondération
+            success: Pondération supprimée avec succès
+          edit:
+            save: Enregistrer
+          form:
+            name_help: 'Type de membre, ex. « membre », « associé », « soutien ». Doit
+              être unique.'
+            name_placeholder: 'Essayez par exemple : « membre », « associé », « soutien
+              »...'
+            weight_help: 'Poids du vote, ex. « 1 », « 2 », « 1.5 ». Ce nombre est utilisé
+              pour pondérer les votes des participants de ce type de pondération.'
+          index:
+            actions:
+              new_ponderation: Nouvelle pondération
+            created_at: Créé le
+            name: Type d'adhésion
+            num_users: Total du recensement
+            weight: Poids du vote
+          new:
+            save: Créer
+            title: Nouveau type de pondération
+          update:
+            error: Une erreur s'est produite lors de la mise à jour de la pondération
+            success: Pondération mise à jour avec succès
+        settings:
+          authorization_method:
+            both: E-mail et numéro de téléphone
+            email: E-mail uniquement
+            phone: Numéro de téléphone uniquement
+          authorization_method_help_html: |
+            Les options disponibles sont :
+            <br><br>
+            <ul>
+              <li><b>Numéro de téléphone uniquement :</b> Utilise la vérification par SMS. Les participants doivent saisir leur numéro de téléphone qui correspond au recensement.</li>
+              <li><b>E-mail uniquement :</b> L'e-mail du participant doit correspondre au recensement.</li>
+              <li><b>E-mail et numéro de téléphone :</b> Utilise la vérification par SMS. L'e-mail du participant doit correspondre au recensement et le numéro de téléphone sera prédéfini.</li>
+            </ul>
+          check_verifier:
+            not_installed_html: Il semble que la méthode d'autorisation « Vérificateur
+              de gouvernance d'entreprise » ne soit pas installée. Vous ne pouvez pas
+              utiliser le recensement intégré sans elle. Veuillez l'installer dans <a
+              href="/system">/system</a>.
+          copy_setting: 'Copier les pondérations et le recensement depuis :'
+          create:
+            error: Un problème est survenu lors de la création de la configuration
+            success: Configuration enregistrée avec succès
+          destroy:
+            error: Un problème est survenu lors de la suppression de cette configuration
+            success: Configuration supprimée avec succès
+          edit:
+            save: Enregistrer
+          form:
+            max_grants: Délégations maximum par utilisateur
+          index:
+            actions:
+              census: Modifier le recensement
+              delegations: Modifier les délégations
+              new_setting: Nouvelle configuration
+              ponderate: Définir les poids pour la pondération des votes
+            active: Actif
+            authorization_method: Méthode d'autorisation
+            census: Total du recensement
+            created_at: Créé le
+            delegations: Délégations
+            description_html: |
+              <ul>
+                <li>Ce module est conçu pour les organisations nécessitant un système robuste de gestion des délégations de participants</li>
+                <li><b>Fonctionnalités :</b> recensement entièrement géré, délégations de participants et poids par type de membre. Vérification par SMS, e-mail ou les deux. L'utilisation d'un recensement est optionnelle.</li>
+                <li>Chaque entrée peut être utilisée comme <b>groupe de délégation</b> unique avec un nombre maximum de délégations par utilisateur, des octrois de délégations différents et différents jeux de types de pondération.</li>
+                <li><b>Utilisation :</b> Après avoir configuré un groupe de délégation, vous pouvez utiliser le <b>Vérificateur de gouvernance d'entreprise</b> pour garantir que tous les participants sont correctement autorisés dans le composant requis. Veillez également à utiliser le <b>recensement de gouvernance d'entreprise</b> lors de la configuration d'une élection.</li>
+              </ul>
+            max_grants: Délégations max./utilisateur
+            name: Nom
+            open: Ouvert
+            ponderations: Types de pondération
+            title: Gouvernance d'entreprise
+          new:
+            save: Créer
+            title: Nouvelle configuration
+          setting_checks:
+            all_users_authorized_html: Tous les participants sont vérifiés par le <i>Vérificateur
+              de gouvernance d'entreprise</i>.
+            all_users_registered_html: Tous les participants sont enregistrés sur la
+              plateforme.
+            applies_to: S'applique aux espaces de vote suivants
+            click_to_fix: Cliquez ici pour corriger automatiquement
+            missing_authorizations_html: Il y a %{count} participants qui ne sont pas
+              vérifiés par le <i>Vérificateur de gouvernance d'entreprise</i>. <em>C'est
+              acceptable si ces participants ont délégué leurs votes ou si vous utilisez
+              d'autres méthodes de vérification (ou aucune).</em>
+            missing_emails: La méthode d'autorisation ne nécessite pas d'e-mail. Pour
+              cette raison, %{count} doivent s'enregistrer sur la plateforme
+            missing_registered_users_html: Il y a %{count} participants qui ne sont
+              pas enregistrés sur la plateforme.
+            no_delegations_html: Il n'y a aucune délégation de vote.
+            no_participants_html: Il n'y a aucun recensement ! <b>Ajoutez des participants
+              sinon personne ne pourra voter si le <i>Vérificateur de gouvernance d'entreprise</i>
+              est actif.</b> <em>C'est acceptable si vous utilisez d'autres méthodes
+              d'autorisation ou si tout le monde est autorisé à voter.</em>
+            no_ponderations_html: Il n'y a aucune pondération de vote. <b>Tous les utilisateurs
+              auront le même poids sur leurs votes</b>
+            no_resources_found: Aucun espace de vote n'utilise cette configuration !
+            participant: participant
+            user: utilisateur
+            users_need_sync_html: La liste des participants doit être synchronisée.
+              <b>Les résultats de la consultation pourraient être incorrects !</b>
+          update:
+            error: Un problème est survenu lors de la mise à jour de la configuration
+            success: Configuration enregistrée avec succès
+        weighted_results:
+          title: Résultats par réponse pondérés par les poids d'adhésion
+      authorizations:
+        new:
+          missing_phone_error: Numéro de téléphone d'adhésion manquant
+          phone_warning: Ce numéro de téléphone a été importé par l'administrateur.
+            Veuillez nous contacter s'il est incorrect.
+      delegations:
+        has_delegations: Vote délégué effectué
+        link: "👉 Vous avez reçu des délégations"
+      delegations_authorizer:
+        email: Nous utilisons l'e-mail %{email} pour vérifier votre identité. Si vous
+          pensez qu'il s'agit d'une erreur, veuillez nous contacter.
+        inactive_setting_html: Le recensement « %{census} » n'est pas actif. Vous pouvez
+          essayer de <a href="%{renew_path}" class="underline">renouveler votre vérification</a>.
+          Sinon, veuillez contacter l'administrateur si vous pensez qu'il s'agit d'une
+          erreur.
+        no_setting_html: Il semble que vous n'appartenez pas au recensement actuel.
+          Vous pouvez essayer de <a href="%{renew_path}" class="underline">renouveler
+          votre vérification</a>. Sinon, veuillez contacter l'administrateur si vous
+          pensez qu'il s'agit d'une erreur.
+        not_in_census_html: Il semble que vous n'appartenez pas au recensement « %{census}
+          ». Vous pouvez essayer de <a href="%{renew_path}" class="underline">renouveler
+          votre vérification</a>. Sinon, veuillez contacter l'administrateur si vous
+          pensez qu'il s'agit d'une erreur.
+        phone: Nous utilisons le téléphone %{phone} pour vérifier votre identité. Si
+          vous pensez qu'il s'agit d'une erreur, veuillez nous contacter.
+      elections:
+        admin:
+          dashboard:
+            questions_table:
+              delegated_votes: Votes délégués
+              participants: Participants
+              participants_count:
+                one: 1 participant
+                other: "%{count} participants"
+              unweighted_votes: Votes non pondérés
+              weight: Poids
+              weighted_votes: Votes pondérés
+            results_type_info:
+              by_type_and_weight_html: <p>Les résultats ci-dessous sont détaillés par
+                type d'adhésion et pondérés par les poids d'adhésion définis dans la
+                configuration de la gouvernance d'entreprise.</p> <p>Chaque option de
+                réponse affiche le nombre de votes qu'elle a reçus de chaque type d'adhésion
+                mais aucun poids n'est appliqué dans cette vue.</p> <p>Par exemple,
+                si l'option A a reçu 2 votes de membres avec un poids de « 3.0 » et
+                1 vote d'un membre avec un poids de « 1.0 », les résultats afficheront
+                2 votes de membres avec un poids de « 3.0 » et 1 vote de membres avec
+                un poids de « 1.0 ».</p> <p>⚠️ Ces résultats ne sont pas affichés au
+                public.</p>
+              normal_count_html: "<p>Ces résultats sont calculés en comptant chaque
+                vote de manière égale, quel que soit le poids d'adhésion du participant
+                qui l'a émis.</p> <p>⚠️ Ces résultats ne sont pas affichés au public.</p>"
+              sum_of_weights_html: <p>Les résultats ci-dessous sont pondérés par les
+                poids d'adhésion définis dans la configuration de la gouvernance d'entreprise.</p>
+                <p>Chaque vote est multiplié par le poids du membre qui l'a émis.</p>
+                <p>Par exemple, si un membre avec un poids de « 3.0 » vote pour l'option
+                A et qu'un membre avec un poids de « 1.0 » vote pour l'option B, les
+                résultats afficheront 3 votes pour l'option A et 1 vote pour l'option
+                B.</p> <p><strong>⚠️ Ce sont ces résultats qui sont affichés au public.</strong></p>
+              title: Comment interpréter ces résultats ?
+              totals_html: "<p>Les résultats ci-dessous affichent les totaux pour chaque
+                question, en sommant tous les votes reçus par chaque option de réponse
+                en appliquant les poids d'adhésion et sans les appliquer.</p> <p>Vous
+                pouvez également voir le nombre de participants et combien de votes
+                délégués ont été émis pour chaque option.</p> <p>⚠️ Ces résultats ne
+                sont pas affichés au public.</p>"
+        delegation_buttons:
+          delegations_active: Vous avez des votes délégués.
+          per_question_delegations: 'Vous pouvez voter au nom des participants suivants
+            pour cette élection :'
+          vote_for: Voter au nom de %{name}
+        votes:
+          delegated_voting: Vous votez au nom de %{name}
+          edit_vote_for: Modifier le vote pour %{name}
+          self_voting: Vous votez pour vous-même (%{name}).
+          waiting_for: Continuer à voter au nom de %{name}
+      import_mailer:
+        import:
+          errors_present: Il y a eu des erreurs lors de l'importation
+          errors_title: "<b>Trouvé :</b> %{errors_count} erreurs"
+          greeting: Bonjour %{name},
+          info_messages: Raison du saut
+          instructions: "<p>Ci-joint un fichier avec les détails d'importation, qui
+            contient les lignes qui n'ont pas été importées.</p>\n<p>Si vous souhaitez
+            continuer l'importation, corrigez les lignes spécifiées, supprimez la dernière
+            colonne du fichier, enregistrez \nle fichier et importez à nouveau.</p>\n"
+          result: "<b>Importé :</b> %{rows_count} lignes sur %{total_rows_count}."
+          row_number: Numéro de ligne
+          skipped_rows: "<b>Sautées :</b> %{skipped_rows} lignes."
+          subject: CSV importé
+          success: CSV importé avec succès
+          text_error: Erreur
+      invite_participants_mailer:
+        confirmation:
+          body: Vous avez été invité à participer à la consultation. Veuillez cliquer
+            sur le lien ci-dessous pour confirmer votre participation.
+          confirm: Confirmer la participation
+          greeting: Bonjour %{recipient},
+      participants_csv_importer:
+        import:
+          error: Un problème est survenu lors de l'importation des participants
+          error_field: Raison du saut
+          field_name:
+            phone: téléphone
+            weight: poids
+          phone_exists: Un participant avec ce numéro de téléphone existe déjà
+          ponderation_not_found: Type de pondération introuvable
+          skip_import_info: Le participant existe déjà %{with_mismatched_fields}
+          with_mismatched_fields: " avec des champs non concordants : %{fields}"
+      sms_message: Votre code de vérification est %{code}
+      user_delegations:
+        index:
+          no_active_delegations: Vous n'avez aucun vote délégué actif pour le moment.
+          vote_delegated_html: Vote délégué par <strong>%{name}</strong>
+      verification:
+        admin:
+          members:
+            index:
+              title: Gestion des membres
+      verifications:
+        delegations_verifier:
+          authorizations:
+            edit:
+              confirm_destroy: Êtes-vous sûr de vouloir réinitialiser le code de vérification
+                ?
+              destroy: Réinitialiser le code de vérification
+              resend: Vous n'avez pas reçu le code de vérification ?
+              send: Confirmer
+              title: Saisissez le code de vérification que vous avez reçu
+            new:
+              authorize: Autoriser mon compte
+              missing_phone_error: Numéro de téléphone d'adhésion manquant
+              no_resources_found: Aucune ressource trouvée. Si vous pensez qu'il s'agit
+                d'une erreur, veuillez contacter l'administrateur (il est possible qu'il
+                n'y ait rien d'actif pour le moment).
+              not_in_census: Nous sommes désolés mais vous ne pouvez pas être autorisé
+                car votre e-mail n'est pas dans le recensement. Veuillez contacter l'administrateur
+                si vous pensez qu'il s'agit d'une erreur.
+              participate_in: 'Cette autorisation vous permet de participer aux ressources
+                suivantes :'
+              phone_warning: Ce numéro de téléphone a été importé par l'administrateur.
+                Veuillez nous contacter s'il est incorrect.
+              send_code: Envoyer le code de vérification
+              title: Autoriser avec le vérificateur de gouvernance d'entreprise
+          not_active: Le vérificateur de gouvernance d'entreprise ne peut pas être accordé
+            pour le moment car il n'y a aucun espace de vote actif.
+    admin:
+      actions:
+        invite: Envoyer l'invitation
+        invite_all: Envoyer des invitations aux utilisateurs inexistants
+        resend: Renvoyer l'invitation
+    authorization_handlers:
+      admin:
+        delegations_verifier:
+          help:
+          - Une méthode de vérification pour le vote délégué, le vote pondéré et le
+            recensement entièrement géré.
+      delegations_verifier:
+        explanation: Les utilisateurs vérifiés par cette méthode peuvent déléguer des
+          votes à d'autres utilisateurs
+        fields:
+          phone: Numéro de téléphone
+          setting: Configuration
+          setting_ids: Configurations
+        name: Gouvernance d'entreprise
+    elections:
+      censuses:
+        action_delegator_census:
+          authorizer_handler_admin_callout_html: Choisissez la méthode d'autorisation
+            « Gouvernance d'entreprise » si vous souhaitez utiliser la liste des participants
+            du groupe de configuration choisi pour valider qui peut voter.<br> Vous
+            pouvez également utiliser une autre méthode d'autorisation si votre source
+            de recensement est externe ou si vous ne voulez pas utiliser de recensement
+            du tout (et que toute personne enregistrée peut voter).
+          label: Recensement de gouvernance d'entreprise
+    verifications:
+      authorizations:
+        first_login:
+          actions:
+            delegations_verifier: Se faire vérifier avec le recensement de gouvernance
+              d'entreprise
+  devise:
+    mailer:
+      invite_participant:
+        subject: Vous avez été invité à participer à la consultation
+  layouts:
+    decidim:
+      user_profile:
+        vote_delegations: Délégations de vote
