@@ -6,8 +6,8 @@ module Decidim
       module Admin
         class ResultsController < ActionDelegator::Admin::ApplicationController
           include ::Decidim::ActionDelegator::SettingsHelper
+          before_action :enforce_election_permission
 
-          # TODO: authentication
           def by_type_and_weight
             render json: {
               id: election.id,
@@ -48,8 +48,17 @@ module Decidim
 
           private
 
+          def enforce_election_permission
+            enforce_permission_to :dashboard, :election, election:
+          end
+
           def election
-            @election ||= Decidim::Elections::Election.includes(questions: { votes: :versions }).find(params[:id])
+            @election ||= begin
+              record = Decidim::Elections::Election.includes(questions: { votes: :versions }).find(params[:id])
+              raise ActiveRecord::RecordNotFound unless record.component.organization == current_organization
+
+              record
+            end
           end
         end
       end

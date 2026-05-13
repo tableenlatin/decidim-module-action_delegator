@@ -21,7 +21,7 @@ module Decidim
             post :invite_all_users, on: :collection
             post :resend_invitation, on: :member
           end
-          resources :manage_participants, only: [:new, :create, :destroy_all] do
+          resources :manage_participants, only: [:new, :create] do
             delete :destroy_all, on: :collection
           end
           resources :manage_delegations, only: [:new, :create]
@@ -31,9 +31,8 @@ module Decidim
         end
 
         # TODO: replace with real implementation once results pages for elections are ready
-        resources :elections, param: :slug, only: [] do
+        resources :elections, only: [] do
           get :results, on: :member
-          # get :weighted_results, on: :member
           # resources :exports, only: :create, module: :elections
 
           # namespace :exports do
@@ -41,7 +40,17 @@ module Decidim
           # end
         end
 
-        root to: "delegations#index"
+        root to: "settings#index"
+      end
+
+      initializer "decidim_action_delegator.admin_mount_routes" do
+        Decidim::Core::Engine.routes do
+          extend Decidim::Routes::LocaleRedirects
+
+          scope "/:locale", **locale_scope_options do
+            mount Decidim::ActionDelegator::AdminEngine, at: "/admin/action_delegator", as: "decidim_admin_action_delegator"
+          end
+        end
       end
 
       initializer "decidim_admin_action_delegator.admin_user_menu" do
@@ -88,26 +97,7 @@ module Decidim
         end
       end
 
-      initializer "decidim_admin_action_delegator.admin_election_menu" do
-        Decidim.menu :admin_election_menu do |menu|
-          menu.remove_item :results_election
-          is_results = is_active_link?(decidim_admin_elections.results_election_path(current_election)) ||
-                       is_active_link?(decidim_admin_action_delegator.results_election_path(current_election)) ||
-                       is_active_link?(decidim_admin_action_delegator.weighted_results_election_path(current_election))
-          params = {
-            position: 1.2,
-            active: is_results,
-            if: allowed_to?(:read, :question)
-          }
-          params[:submenu] = { target_menu: :admin_delegation_results_submenu } if is_results
-          menu.add_item :delegated_results,
-                        I18n.t("results", scope: "decidim.admin.menu.elections_submenu"),
-                        decidim_admin_elections.results_election_path(current_election),
-                        params
-        end
-      end
-
-      initializer "decidim_admin_action_delegator.admin_election_menu" do
+      initializer "decidim_admin_action_delegator.admin_delegation_results_submenu" do
         Decidim.menu :admin_delegation_results_submenu do |menu|
           election = @election
           current_component_admin_proxy = election ? Decidim::EngineRouter.admin_proxy(election.component) : nil

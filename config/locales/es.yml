@@ -114,6 +114,7 @@ es:
           elections_submenu:
             by_answer: Por respuesta
             by_type_and_weight: Por tipo y peso
+            results: Resultados
             sum_of_weights: Por suma de pesos
             totals: Totales
           participants: Participantes

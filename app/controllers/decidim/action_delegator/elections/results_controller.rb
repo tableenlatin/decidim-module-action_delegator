@@ -6,7 +6,6 @@ module Decidim
       class ResultsController < ActionDelegator::ApplicationController
         include ::Decidim::ActionDelegator::SettingsHelper
 
-        # TODO: authentication, ensure published results
         def sum_of_weights
           render json: {
             id: election.id,
@@ -28,7 +27,12 @@ module Decidim
         private
 
         def election
-          @election ||= Decidim::Elections::Election.published.includes(questions: { votes: :versions }).find(params[:id])
+          @election ||= begin
+            record = Decidim::Elections::Election.published.includes(questions: { votes: :versions }).find(params[:id])
+            raise ActiveRecord::RecordNotFound unless record.component.organization == current_organization
+
+            record
+          end
         end
       end
     end

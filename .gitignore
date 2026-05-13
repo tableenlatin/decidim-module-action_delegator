@@ -25,3 +25,21 @@ npm_debug.log
 
 tags
 *.gem
+*.rbc
+
+# macOS
+.DS_Store
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+Icon?
+
+# Local env overrides
+.env.local
+.ruby-lsp/
+
+# CSV import artifact written next to the input CSV by the importer.
+# Tests passing a temp/in-memory CSV cause this to land at repo root.
+/details.csv

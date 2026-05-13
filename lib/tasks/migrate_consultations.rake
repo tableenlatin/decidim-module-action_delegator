@@ -109,7 +109,7 @@ namespace :action_delegator do
     puts format("%-12s %12d %12d %12d %12d", "SOURCE", source_stats[:consultations], source_stats[:questions], source_stats[:responses], source_stats[:votes])
     puts "-" * 70
     puts ""
-    unless ENV["CI"].present? || ENV["FORCE_MIGRATION"].to_s.downcase == "true"
+    unless ENV["CI"].present? || ENV["FORCE_MIGRATION"].to_s.downcase == "true" || !$stdin.tty?
       print "Continue migration? (y/N): "
       answer = $stdin.gets.chomp.downcase
       unless answer == "y"

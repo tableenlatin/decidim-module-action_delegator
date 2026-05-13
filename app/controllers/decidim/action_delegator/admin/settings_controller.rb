@@ -102,7 +102,7 @@ module Decidim
         end
 
         def copy_from_setting
-          @copy_from_setting ||= Setting.find_by(id: params[:setting][:copy_from_setting_id])
+          @copy_from_setting ||= organization_settings.find_by(id: params.dig(:setting, :copy_from_setting_id))
         end
       end
     end

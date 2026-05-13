@@ -114,6 +114,7 @@ ca:
           elections_submenu:
             by_answer: Per resposta
             by_type_and_weight: Per tipus i ponderació
+            results: Resultats
             sum_of_weights: Per suma ponderada
             totals: Total
           participants: Participants

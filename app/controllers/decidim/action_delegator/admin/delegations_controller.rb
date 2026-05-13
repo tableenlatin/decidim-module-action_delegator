@@ -62,29 +62,13 @@ module Decidim
                 query = if term.start_with?("@")
                           nickname = term.delete("@")
                           relation.where("nickname LIKE ?", "#{nickname}%")
-                                  .order(
-                                    Arel.sql(
-                                      ActiveRecord::Base.sanitize_sql_array(["similarity(nickname, ?) DESC", nickname])
-                                    )
-                                  )
+                                  .order(Arel.sql(ActiveRecord::Base.send(:sanitize_sql_array, ["similarity(nickname, ?) DESC", nickname])))
                         else
                           relation.where("name ILIKE ?", "%#{term}%").or(
                             relation.where("email ILIKE ?", "%#{term}%")
                           )
-                                  .order(
-                                    Arel.sql(
-                                      ActiveRecord::Base.sanitize_sql_array(
-                                        ["GREATEST(similarity(name, ?), similarity(email, ?)) DESC", term, term]
-                                      )
-                                    )
-                                  )
-                                  .order(
-                                    Arel.sql(
-                                      ActiveRecord::Base.sanitize_sql_array(
-                                        ["(similarity(name, ?) + similarity(email, ?)) / 2 DESC", term, term]
-                                      )
-                                    )
-                                  )
+                                  .order(Arel.sql(ActiveRecord::Base.send(:sanitize_sql_array, ["GREATEST(similarity(name, ?), similarity(email, ?)) DESC", term, term])))
+                                  .order(Arel.sql(ActiveRecord::Base.send(:sanitize_sql_array, ["(similarity(name, ?) + similarity(email, ?)) / 2 DESC", term, term])))
                         end
                 users = query.select(:id, :name, :nickname, :email).limit(20)
                 render json: users.collect { |u| { value: u.id, label: "#{u.name} (@#{u.nickname} - #{u.email})" } }

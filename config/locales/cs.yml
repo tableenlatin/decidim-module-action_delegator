@@ -114,6 +114,7 @@ cs:
           elections_submenu:
             by_answer: By answer
             by_type_and_weight: By type and weight
+            results: Results
             sum_of_weights: Sum of weights
             totals: Totals
           participants: Účastníci

@@ -16,9 +16,9 @@ Also, provides a Census handler for Decidim elections that uses the configuratio
 
 ## Dependencies
 
-* [decidim-elections](https://github.com/decidim/decidim/tree/master/decidim-elections) >= v0.31
-* [decidim-admin](https://github.com/decidim/decidim/tree/master/decidim-admin) >= v0.31
-* [decidim-core](https://github.com/decidim/decidim/tree/master/decidim-core) >= v0.31
+* [decidim-elections](https://github.com/decidim/decidim/tree/master/decidim-elections) `0.32.x`
+* [decidim-admin](https://github.com/decidim/decidim/tree/master/decidim-admin) `0.32.x`
+* [decidim-core](https://github.com/decidim/decidim/tree/master/decidim-core) `0.32.x`
 
 ## Installation
 
@@ -56,6 +56,7 @@ Depending on your Decidim version, choose the corresponding Action Delegator ver
 
 | Version | Compatible Decidim versions |
 |---------|-----------------------------|
+| 0.32.x  | 0.32.x                      |
 | 0.9.x   | 0.31.x                      |
 | 0.8.x   | 0.27.x                      |
 | 0.7.x   | 0.26.x                      |
@@ -402,17 +403,16 @@ can add the environment variables to the root directory of the project in a file
 named `.rbenv-vars`. If these are defined for the environment, you can omit
 defining these in the commands shown above.
 
-#### Webpacker notes
+#### Shakapacker notes
 
-As latests versions of Decidim, this repository uses Webpacker for Rails. This means that compilation
-of assets is required everytime a Javascript or CSS file is modified. Usually, this happens
-automatically, but in some cases (specially when actively changes that type of files) you want to 
-speed up the process. 
+This repository uses Decidim's current Shakapacker-based asset pipeline. When
+you modify JavaScript or CSS files, assets may need to be rebuilt.
 
-To do that, start in a separate terminal than the one with `bin/rails s`, and BEFORE it, the following command:
+If you want faster feedback while working on frontend assets, start the asset
+watcher in a separate terminal before starting the Rails server:
 
 ```bash
-bin/webpack-dev-server
+bin/shakapacker-dev-server
 ```
 
 #### Code Styling

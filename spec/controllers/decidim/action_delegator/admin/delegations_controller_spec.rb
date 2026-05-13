@@ -20,7 +20,7 @@ module Decidim
         let!(:delegation) { create(:delegation, setting: setting) }
 
         it "renders decidim/action_delegator/admin/delegations layout" do
-          get :index
+          get :index, params: { setting_id: setting.id }
           expect(response).to render_template("layouts/decidim/admin/users")
         end
 
@@ -46,6 +46,21 @@ module Decidim
         it "returns a success response" do
           get :new, params: { setting_id: setting.id }
           expect(response).to be_successful
+        end
+      end
+
+      describe "#users" do
+        let!(:matching_user) do
+          create(:user, organization:, name: "O'Connor", nickname: "o_connor", email: "oconnor@example.org")
+        end
+
+        it "returns matching users for JSON requests with quoted terms" do
+          get :users, params: { setting_id: setting.id, term: "O'Con" }, format: :json
+
+          expect(response).to have_http_status(:ok)
+          expect(response.parsed_body).to include(
+            a_hash_including("value" => matching_user.id, "label" => include("O'Connor"))
+          )
         end
       end
 
