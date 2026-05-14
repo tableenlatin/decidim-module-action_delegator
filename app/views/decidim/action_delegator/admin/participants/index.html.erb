@@ -45,7 +45,7 @@
 
             <td class="table-list__actions">
               <% if Decidim::ActionDelegator.allow_to_invite_users %>
-                <%= icon_link_to "arrow-go-forward-line",
+                <%= icon_link_to "share-forward-line",
                                  decidim_admin_action_delegator.resend_invitation_setting_invite_participant_path(participant.setting, participant),
                                  t("actions.resend", scope: "decidim.admin"),
                                  method: :post if participant.last_login.nil? && participant.user.present? && !(current_setting.authorization_method == "phone") %>
